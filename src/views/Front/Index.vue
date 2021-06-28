@@ -1,0 +1,199 @@
+<template>
+  <div class="container">
+    <Carousel/>
+    <Menu :active="'首頁'"/>
+    <HeaderMain class="pt-5 pt-md-3">
+    <template v-slot:headerMain>創意空間裝修選材</template>
+    <template v-slot:content>
+      <p>提供豐富多元的裝修建材資訊</p>
+      <p>配合友善的介面，讓建材資訊公開透明</p>
+    </template>
+    </HeaderMain>
+    <div class="py-5 row g-0">
+      <div class="col-md-4">
+        <router-link to="/new" class="text-decoration-none">
+          <div class="img-link animated">
+            <img v-lazy="require('@/assets/images/menu-img-v.jpg')" alt="新品到貨" class="img-menu-v">
+            <div class="menu-item-title verticle-line"><span>新品到貨</span></div>
+          </div>
+        </router-link>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-12">
+            <router-link to="/discount" class="text-decoration-none">
+              <div class="img-link animated">
+                <img v-lazy="require('@/assets/images/menu-img.png')" alt="限時優惠" class="img-menu">
+                <div class="menu-item-title">限時優惠</div>
+              </div>
+            </router-link>
+          </div>
+          <div class="col-12">
+            <router-link to="/article" class="text-decoration-none">
+              <div class="img-link animated">
+                <img v-lazy="require('@/assets/images/menu-img-h2.jpg')" alt="私房設計推薦" class="img-menu">
+                <div class="menu-item-title">私房設計推薦</div>
+              </div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <Header>
+    <template v-slot:header>熱賣商品</template>
+    </Header>
+    <div class="py-3">
+    <swiper :slidesPerView="4" :spaceBetween="20" class="swiper-container-index animated"
+    :slidesPerGroup="4" :loop="true" :autoHeight="true"
+    :navigation="true" :lazy="true" :breakpoints=" {
+    0:{
+      slidesPerView: 1,
+      spaceBetween: 10,
+      slidesPerGroup: 1
+    },
+    567: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      slidesPerGroup: 1
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      slidesPerGroup: 3
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 20,
+      slidesPerGroup: 4
+    }
+    }">
+      <swiper-slide v-for="item in ItemJson" :key="item.id">
+        <router-link :to="`/product/${item.id}`">
+          <img :src="item.imageUrl" class="swiper-lazy swiper-main-img" />
+          <img :src="item.imageUrl2" class="swiper-lazy swiper-second-img" />
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+          <div class="view-more"><span class="h5">查看更多</span></div>
+          <div class="slide-captions">
+            <p class="text-start mb-0"> {{ item.title }} </p>
+            <p class="text-start mb-0"><small> {{ item.description }} </small></p>
+          </div>
+        </router-link>
+      </swiper-slide>
+    </swiper>
+    </div>
+    <div class="py-4">
+      <Header>
+        <template v-slot:header>聯絡我們</template>
+      </Header>
+      <div class="contact row g-0">
+        <div class="col-md-6 animated">
+          <iframe crossorigin="anonymous" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1807.109428940167!2d121.57541290794208!3d25.06057022569894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab13a340b6b5%3A0x14c3f84217cb6ab0!2zSUtFQSDlrpzlrrblrrblsYUg5YWn5rmW5bqX!5e0!3m2!1szh-TW!2stw!4v1624536578867!5m2!1szh-TW!2stw&output=embed" width="100%" height="450" style="border:0;"></iframe>
+        </div>
+        <div class="col-md-6 bg-secondary animated">
+          <div class="contact-wrapper p-4 my-5">
+          <Form @submit="sendMessage" v-slot="{ errors }">
+            <div class="form-floating mb-3">
+              <Field type="text" name="姓名" class="form-control" id="userName" placeholder="姓名"
+              :class="{ 'is-invalid': errors['姓名'] }" rules="required" v-model="user.name"></Field>
+              <label for="userName" v-if="!errors['姓名']">姓名</label>
+              <ErrorMessage as="label" for="userName" name="姓名" class="invalid-feedback">
+              </ErrorMessage>
+            </div>
+            <div class="form-floating mb-3">
+              <Field type="email" class="form-control" name="email" id="email" placeholder="name@example.com"
+               :class="{ 'is-invalid': errors['email'] }" rules="email|required" v-model="user.email"></Field>
+              <label for="email" v-if="!errors['email']">Email</label>
+              <ErrorMessage as="label" for="email" name="email" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="form-floating mb-3">
+              <Field as="textarea" class="form-control" rules="required" placeholder="留言" v-model="user.msg" id="msg" name="留言" style="height: 100px"
+               :class="{ 'is-invalid': errors['留言'] }">
+               </Field>
+              <label for="msg" v-if="!errors['留言']">留言</label>
+              <ErrorMessage name="留言" as="label" for="msg" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="text-end">
+              <button class="btn-outline-primary btn btn-hv-style">送出</button>
+            </div>
+          </Form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Carousel from '@/components/Front/Carousel.vue'
+import Menu from '@/components/Front/Menu.vue'
+import Header from '@/components/Front/Header.vue'
+import HeaderMain from '@/components/Front/HeaderMain.vue'
+import $ from 'jquery'
+import SwiperCore, { Navigation } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/swiper.scss'
+import 'swiper/components/navigation/navigation.scss'
+import ItemJson from '@/assets/json/IndexProduct.json'
+SwiperCore.use([Navigation])
+
+export default {
+  name: 'Index',
+  components: {
+    Carousel,
+    Menu,
+    Header,
+    HeaderMain,
+    Swiper,
+    SwiperSlide
+  },
+  inject: ['emitter'],
+  data () {
+    return {
+      ItemJson,
+      user: {
+        name: '',
+        email: '',
+        msg: ''
+      }
+    }
+  },
+  computed: {
+    isCompleted () {
+      return this.user.name && this.user.email && this.user.msg
+    }
+  },
+  methods: {
+    scroll () {
+      const scrollPos = $(window).scrollTop()
+      const windowH = $(window).height()
+      $('.animated').each(function () {
+        const thisPos = $(this).offset().top
+        if ((windowH + scrollPos) >= thisPos) {
+          $(this).addClass('slidein')
+        }
+      })
+    },
+    sendMessage (values, { resetForm }) {
+      this.emitter.emit('push-message', {
+        style: 'success',
+        title: '訊息通知',
+        content: '已收到您的留言，感謝您的支持與建議!',
+        icon: 'fas fa-check-circle'
+      })
+      resetForm()
+    }
+  },
+  created () {
+    const vm = this
+    vm.emitter.emit('cartVisible', true)
+    window.addEventListener('scroll', this.scroll)
+    vm.emitter.emit('loading', true)
+    window.setTimeout(function () {
+      vm.emitter.emit('loading', false)
+    }, 2000)
+  },
+  unmounted () {
+    window.removeEventListener('scroll', this.scroll)
+  }
+}
+</script>
