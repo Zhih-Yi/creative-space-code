@@ -12,7 +12,11 @@
             <ProductCard :data="item"></ProductCard>
           </div>
         </div>
-        <div class="py-1 text-end"><router-link to="/"><p class="h3"><i class="bi bi-arrow-left me-3"></i>回首頁</p></router-link></div>
+        <div class="py-1 text-end">
+          <router-link to="/">
+            <p class="h3"><i class="bi bi-arrow-left me-3"></i>回首頁</p>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -20,8 +24,8 @@
 
 <script>
 import PageTitle from '@/components/Front/PageTitle.vue'
-import DiscountJson from '@/assets/json/Discount.json'
 import ProductCard from '@/components/Front/ProductCard.vue'
+import DiscountJson from '@/assets/json/Discount.json'
 
 export default {
   name: 'Discount',
@@ -29,7 +33,6 @@ export default {
     PageTitle,
     ProductCard
   },
-  inject: ['emitter'],
   data () {
     return {
       DiscountJson

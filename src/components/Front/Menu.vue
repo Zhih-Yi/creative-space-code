@@ -1,16 +1,17 @@
 <template>
   <div class="d-none d-md-block row py-4">
     <div class="col-md-12">
-      <nav class="navbar navbar-expand navbar-front navbar-front-hr" aria-label="Second navbar example">
+      <nav class="navbar navbar-expand navbar-front navbar-front-hr" aria-label="navbar">
         <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarsExample02">
+          <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto w-100 justify-content-between align-items-center">
               <li class="nav-item">
                 <router-link class="nav-link" aria-current="page" to="/">首頁</router-link>
               </li>
               <li class="nav-item dropdown position-static">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                建材
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                  建材
                 </a>
                 <ul class="dropdown-menu w-100 shadow rounded" aria-labelledby="navbarDropdown">
                   <li class="mx-3 my-2">
@@ -28,8 +29,9 @@
                 </ul>
               </li>
               <li class="nav-item dropdown position-static">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                壁紙/塗料
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                  壁紙/塗料
                 </a>
                 <ul class="dropdown-menu w-100 shadow rounded" aria-labelledby="navbarDropdown">
                   <li class="mx-3 my-2">
@@ -44,8 +46,9 @@
                 </ul>
               </li>
               <li class="nav-item dropdown position-static">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                地材
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                  地材
                 </a>
                 <ul class="dropdown-menu w-100 shadow rounded" aria-labelledby="navbarDropdown">
                   <li class="mx-3 my-2">
@@ -69,15 +72,6 @@
 
 <script>
 export default {
-  name: 'Menu',
-  props: ['active'],
-  mounted () {
-    const links = document.querySelectorAll('.nav-link')
-    links.forEach((value) => {
-      if (value.textContent.trim() === this.active) {
-        value.classList.add('active')
-      }
-    })
-  }
+  name: 'Menu'
 }
 </script>

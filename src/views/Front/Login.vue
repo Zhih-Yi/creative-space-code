@@ -5,11 +5,13 @@
       <div class="col-md-6 my-3 rounded">
         <form @submit.prevent="login">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" v-model="user.username" id="username" name="username" placeholder="name@example.com">
+            <input type="email" class="form-control" v-model="user.username"
+            id="username" name="username" placeholder="name@example.com">
             <label for="username">帳號</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" v-model="user.password" id="password" name="password" placeholder="密碼">
+            <input type="password" class="form-control" v-model="user.password"
+            id="password" name="password" placeholder="密碼">
             <label for="password">密碼</label>
           </div>
           <div class="pt-3 d-grid">
@@ -37,7 +39,6 @@ export default {
       }
     }
   },
-  inject: ['emitter'],
   methods: {
     login () {
       const vm = this

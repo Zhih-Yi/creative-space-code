@@ -9,16 +9,29 @@
       <div class="card-body">
         <p class="card-title h5 mb-1">{{ data.title }}</p>
         <div class="d-flex justify-content-between align-items-center pb-1">
-          <span class="card-text card-gray-text"><small>{{ data.description }}</small></span>
-          <span class="badge rounded-pill bg-success" v-if="data.price != data.origin_price">特價</span>
+          <span class="card-text card-gray-text">
+            <small>{{ data.description }}</small>
+          </span>
+          <span class="badge rounded-pill bg-success"
+          v-if="data.price != data.origin_price">特價</span>
         </div>
         <div class="d-flex justify-content-between align-items-center pb-1">
-          <span class="card-text text-danger"><strong>{{ $filters.currency(data.price) }}</strong></span>
-          <span class="card-text" v-if="data.price != data.origin_price"><del>{{ $filters.currency(data.origin_price) }}</del></span>
+          <span class="card-text text-danger">
+            <strong>{{ $filters.currency(data.price) }}</strong>
+          </span>
+          <span class="card-text" v-if="data.price != data.origin_price">
+            <del>{{ $filters.currency(data.origin_price) }}</del>
+          </span>
         </div>
         <div class="d-flex justify-content-between py-1 flex-wrap">
-          <button type="button" class="btn btn-outline-dark mb-2" @click.prevent="removeFavorite"><i class="fas fa-trash-alt me-2"></i>取消收藏</button>
-          <button type="button" class="btn btn-major mb-2" @click.prevent="addToCart(data)"><i class="fas fa-shopping-cart fa-lg me-2"></i>加入購物車</button>
+          <button type="button" class="btn btn-outline-dark mb-2"
+          @click.prevent="removeFavorite">
+            <i class="fas fa-trash-alt me-2"></i>取消收藏
+          </button>
+          <button type="button" class="btn btn-major mb-2"
+          @click.prevent="addToCart(data)">
+            <i class="fas fa-shopping-cart fa-lg me-2"></i>加入購物車
+          </button>
         </div>
       </div>
     </div>
@@ -32,7 +45,6 @@ export default {
       type: Object
     }
   },
-  inject: ['emitter'],
   methods: {
     removeFavorite () {
       this.$emit('remove', this.data.id)

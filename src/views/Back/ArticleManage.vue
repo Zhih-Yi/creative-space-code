@@ -1,9 +1,13 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 py-5 text-center"><h1>文章管理</h1></div>
+      <div class="col-12 py-5 text-center">
+        <h1>文章管理</h1>
+      </div>
       <div class="col-12 text-end py-3">
-        <button type="button" class="btn btn-primary btn-hv-style" @click="openModal(true)">新增文章</button>
+        <button type="button" class="btn btn-primary btn-hv-style" @click="openModal(true)">
+          新增文章
+        </button>
       </div>
       <div class="col-12">
         <div class="table-responsive">
@@ -64,7 +68,6 @@ export default {
       pageItem: {}
     }
   },
-  inject: ['emitter'],
   methods: {
     getArticle (page = 1) {
       const vm = this

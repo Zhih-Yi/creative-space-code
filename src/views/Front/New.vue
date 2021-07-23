@@ -9,10 +9,16 @@
         </div>
         <div class="row">
           <div class="col-sm-6 col-md-4 col-lg-3 mb-4" v-for="item in NewJson" :key="item.id">
-            <ProductCard :data="item"></ProductCard>
+            <ProductCard :data="item"/>
           </div>
         </div>
-        <div class="py-1 text-end"><router-link to="/"><p class="h3"><i class="bi bi-arrow-left me-3"></i>回首頁</p></router-link></div>
+        <div class="py-1 text-end">
+          <router-link to="/">
+            <p class="h3">
+              <i class="bi bi-arrow-left me-3"></i>回首頁
+            </p>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -20,8 +26,8 @@
 
 <script>
 import PageTitle from '@/components/Front/PageTitle.vue'
-import NewJson from '@/assets/json/New.json'
 import ProductCard from '@/components/Front/ProductCard.vue'
+import NewJson from '@/assets/json/New.json'
 
 export default {
   name: 'New',
@@ -29,7 +35,6 @@ export default {
     PageTitle,
     ProductCard
   },
-  inject: ['emitter'],
   data () {
     return {
       NewJson

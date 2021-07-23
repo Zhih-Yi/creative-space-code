@@ -1,5 +1,4 @@
 import { Modal } from 'bootstrap'
-
 export default {
   methods: {
     showModal () {

@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 py-5 text-center"><h1>訂單管理</h1></div>
+      <div class="col-12 py-5 text-center">
+        <h1>訂單管理</h1>
+      </div>
       <div class="col-12">
         <div class="table-responsive">
           <table class="table" v-if="orders.length>0">
@@ -26,8 +28,12 @@
                   <span v-if="!item.is_paid">未付款</span>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-outline-primary me-2" @click="openModal(item)">修改</button>
-                  <button type="button" class="btn btn-outline-dark" @click="openDeleteModal(item)">刪除</button>
+                  <button type="button" class="btn btn-outline-primary me-2" @click="openModal(item)">
+                    修改
+                  </button>
+                  <button type="button" class="btn btn-outline-dark" @click="openDeleteModal(item)">
+                    刪除
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -50,6 +56,7 @@
 import DeleteModal from '@/components/Back/DeleteModal.vue'
 import MainModal from '@/components/Back/OrderMainModal.vue'
 import BackPagination from '@/components/Back/BackPagination.vue'
+
 export default {
   name: 'OrderManage',
   components: {
@@ -57,7 +64,6 @@ export default {
     MainModal,
     BackPagination
   },
-  inject: ['emitter'],
   data () {
     return {
       orders: [],

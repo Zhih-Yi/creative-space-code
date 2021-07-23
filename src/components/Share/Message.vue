@@ -13,6 +13,7 @@
 </template>
 <script>
 import { Toast } from 'bootstrap'
+
 export default {
   name: 'Message',
   props: [
@@ -21,7 +22,7 @@ export default {
   mounted () {
     const toastEl = this.$refs.toast
     const toast = new Toast(toastEl, {
-      delay: 3500
+      delay: 3200
     })
     toast.show()
   }

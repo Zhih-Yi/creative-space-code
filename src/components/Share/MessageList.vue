@@ -5,14 +5,15 @@
 </template>
 <script>
 import Toast from '@/components/Share/Message.vue'
+
 export default {
+  name: 'MessageList',
   components: { Toast },
   data () {
     return {
       messages: []
     }
   },
-  inject: ['emitter'],
   mounted () {
     this.emitter.on('push-message', (message) => {
       const { style, title, content, icon } = message

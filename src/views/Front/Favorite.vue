@@ -3,7 +3,8 @@
     <PageTitle :path="require('@/assets/images/page-title7.png')">收藏</PageTitle>
     <div class="mh-wrapper">
       <div class="row py-4" v-masonry transition-duration="0.3s" item-selector=".grid-item">
-        <div class="col-md-6 col-lg-4 col-xxl-3 mb-3 grid-item" v-masonry-tile v-for="item in favoriteList" :key="item.id">
+        <div class="col-md-6 col-lg-4 col-xxl-3 mb-3 grid-item" v-masonry-tile
+        v-for="item in favoriteList" :key="item.id">
           <FavoriteCard :data="item" @remove="removeFavorite"/>
         </div>
         <div v-if="favoriteList.length === 0 && !Loading" class="py-3">
@@ -17,13 +18,14 @@
 <script>
 import PageTitle from '@/components/Front/PageTitle.vue'
 import FavoriteCard from '@/components/Front/FavoriteCard.vue'
+
 export default {
   name: 'Favorite',
   components: {
     PageTitle,
     FavoriteCard
   },
-  inject: ['emitter', 'Loading'],
+  inject: ['Loading'],
   data () {
     return {
       favoriteIdList: [],

@@ -1,53 +1,82 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 py-5 text-center"><h1>商品管理</h1></div>
+      <div class="col-12 py-5 text-center">
+        <h1>商品管理</h1>
+      </div>
       <div class="col-12 d-flex justify-content-between py-3">
         <div>
           <div class="input-group">
             <input type="text" v-model="searchText" class="form-control"/>
-            <button type="button" class="btn btn-secondary btn-hv-style" @click="searchProduct">搜尋</button>
+            <button type="button" class="btn btn-secondary btn-hv-style" @click="searchProduct">
+              搜尋
+            </button>
           </div>
         </div>
-        <button type="button" class="btn btn-primary btn-hv-style" @click="openModal(true)">新增商品</button>
+        <button type="button" class="btn btn-primary btn-hv-style" @click="openModal(true)">
+          新增商品
+        </button>
       </div>
       <div class="col-12 pb-5">
-        <nav class="navbar navbar-expand navbar-front navbar-front-hr" aria-label="Second navbar example">
+        <nav class="navbar navbar-expand navbar-front navbar-front-hr" aria-label="navbar">
           <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarsExample02">
+            <div class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto w-100 justify-content-between align-items-center">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#" @click.prevent="getSelectKind('全部')">全部</a>
+                  <a class="nav-link active" aria-current="page" href="#"
+                  @click.prevent="getSelectKind('全部')">全部</a>
                 </li>
                 <li class="nav-item dropdown position-static">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   建材
                   </a>
                   <ul class="dropdown-menu w-100 shadow rounded" aria-labelledby="navbarDropdown">
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('大理石')">大理石</a></li>
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('木皮')">木皮</a></li>
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('表面材')">表面材</a></li>
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('磁磚')">磁磚</a></li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('大理石')">大理石</a>
+                    </li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('木皮')">木皮</a>
+                    </li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('表面材')">表面材</a>
+                    </li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('磁磚')">磁磚</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown position-static">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
                   地材
                   </a>
                   <ul class="dropdown-menu w-100 shadow rounded" aria-labelledby="navbarDropdown">
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('木地板')">木地板</a></li>
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('石塑地板')">石塑地板</a></li>
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('塑膠地板')">塑膠地板</a></li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('木地板')">木地板</a>
+                    </li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('石塑地板')">石塑地板</a>
+                    </li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('塑膠地板')">塑膠地板</a>
+                    </li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown position-static">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
                   壁紙/塗料
                   </a>
                   <ul class="dropdown-menu w-100 shadow rounded" aria-labelledby="navbarDropdown">
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('壁紙')">壁紙</a></li>
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('油漆')">油漆</a></li>
-                    <li class="mx-3 my-2"><a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('特殊漆')">特殊漆</a></li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('壁紙')">壁紙</a>
+                    </li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('油漆')">油漆</a>
+                    </li>
+                    <li class="mx-3 my-2">
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('特殊漆')">特殊漆</a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -76,8 +105,12 @@
                 <td>{{ $filters.currency(item.origin_price) }}</td>
                 <td>{{ $filters.currency(item.price) }}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-primary me-2" @click="openModal(false, item)">修改</button>
-                  <button type="button" class="btn btn-outline-dark" @click="openDeleteModal(item)">刪除</button>
+                  <button type="button" class="btn btn-outline-primary me-2" @click="openModal(false, item)">
+                    修改
+                  </button>
+                  <button type="button" class="btn btn-outline-dark" @click="openDeleteModal(item)">
+                    刪除
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -133,7 +166,6 @@ export default {
       }
     }
   },
-  inject: ['emitter'],
   methods: {
     getProducts (page = 1) {
       const vm = this

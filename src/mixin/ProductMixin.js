@@ -1,5 +1,4 @@
 export default {
-  inject: ['emitter'],
   methods: {
     getProductAll () {
       const vm = this

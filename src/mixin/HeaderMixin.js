@@ -4,10 +4,10 @@ export default {
     scroll () {
       const scrollPos = $(window).scrollTop()
       const windowH = $(window).height()
-      $('.animated-x').each(function () {
-        const thisPos = $(this).offset().top
+      $('.animated-x').each((index, element) => {
+        const thisPos = $(element).offset().top
         if ((windowH + scrollPos) >= thisPos) {
-          $(this).addClass('slidein')
+          $(element).addClass('slidein')
         }
       })
     }

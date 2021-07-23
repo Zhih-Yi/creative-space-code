@@ -2,10 +2,14 @@
   <div class="container">
     <div class="row mh-wrapper">
       <div class="col-md-12 py-3">
-        <a href="#" @click.prevent="historyBack"><i class="bi bi-arrow-left h1"></i></a>
+        <a href="#" @click.prevent="historyBack">
+          <i class="bi bi-arrow-left h1"></i>
+        </a>
       </div>
       <div class="col-md-12">
-        <h1 class="text-center mb-5 h2"><strong>{{ currentArticle.title }}</strong></h1>
+        <h1 class="text-center mb-5 h2">
+          <strong>{{ currentArticle.title }}</strong>
+        </h1>
         <div class="d-flex justify-content-center">
           <img :src="currentArticle.image" :alt="currentArticle.title" class="img-fluid w-100">
         </div>
@@ -25,7 +29,6 @@ export default {
       currentArticle: {}
     }
   },
-  inject: ['emitter'],
   methods: {
     historyBack () {
       this.$router.go(-1)
@@ -36,7 +39,7 @@ export default {
       vm.emitter.emit('loading', true)
       vm.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.currentArticle = { ...res.data.article }
+          vm.currentArticle = { ...res.data.article }
         } else {
           vm.emitter.emit('push-message', {
             style: 'danger',

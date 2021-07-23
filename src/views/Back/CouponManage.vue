@@ -1,9 +1,13 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 py-5 text-center"><h1>優惠卷管理</h1></div>
+      <div class="col-12 py-5 text-center">
+        <h1>優惠卷管理</h1>
+      </div>
       <div class="col-12 text-end py-3">
-        <button type="button" class="btn btn-primary btn-hv-style" @click="openModal(true)">新增優惠卷</button>
+        <button type="button" class="btn btn-primary btn-hv-style" @click="openModal(true)">
+          新增優惠卷
+        </button>
       </div>
       <div class="col-12">
         <div class="table-responsive">
@@ -24,8 +28,10 @@
                 <td>{{ item.is_enabled ? '啟用' : '未啟用' }}</td>
                 <td>{{ $filters.date(item.due_date) }}</td>
                 <td>
-                  <button type="button" class="btn btn-outline-primary me-2" @click="openModal(false, item)">修改</button>
-                  <button type="button" class="btn btn-outline-dark" @click="openDeleteModal(item)">刪除</button>
+                  <button type="button" class="btn btn-outline-primary me-2"
+                  @click="openModal(false, item)">修改</button>
+                  <button type="button" class="btn btn-outline-dark"
+                  @click="openDeleteModal(item)">刪除</button>
                 </td>
               </tr>
             </tbody>
@@ -36,10 +42,12 @@
         <BackPagination :pageItem="pageItem" @updatePage="getCoupon"/>
       </div>
     </div>
-    <MainModal ref="modalMain" :currentItem="currentCoupon" @updateCoupon="updateCoupon">
+    <MainModal ref="modalMain" :currentItem="currentCoupon"
+    @updateCoupon="updateCoupon">
       <template v-slot:title>{{ modalTitle }}</template>
     </MainModal>
-    <DeleteModal ref="modalDelete" :currentItem="currentCoupon" @deleteItem="deleteCoupon">
+    <DeleteModal ref="modalDelete" :currentItem="currentCoupon"
+    @deleteItem="deleteCoupon">
       <template v-slot:title>{{ modalTitle }}</template>
     </DeleteModal>
   </div>
@@ -49,6 +57,7 @@
 import MainModal from '@/components/Back/CouponMainModal.vue'
 import DeleteModal from '@/components/Back/DeleteModal.vue'
 import BackPagination from '@/components/Back/BackPagination.vue'
+
 export default {
   name: 'CouponManage',
   components: {
@@ -65,7 +74,6 @@ export default {
       pageItem: {}
     }
   },
-  inject: ['emitter'],
   methods: {
     getCoupon (page = 1) {
       const vm = this

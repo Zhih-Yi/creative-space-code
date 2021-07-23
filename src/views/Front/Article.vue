@@ -3,19 +3,36 @@
     <PageTitle :path="require('@/assets/images/page-title9.png')">私房設計推薦</PageTitle>
     <div class="row pt-4">
       <div class="col-md-12 d-flex justify-content-center align-items-center flex-wrap">
-        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1" :class="{ active : selectItem === '全部' }" @click="getSelectArticle('全部')">全部</button>
-        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1" :class="{ active : selectItem === '客廳' }" @click="getSelectArticle('客廳')">客廳</button>
-        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1" :class="{ active : selectItem === '臥房' }" @click="getSelectArticle('臥房')">臥房</button>
-        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1" :class="{ active : selectItem === '廚房' }" @click="getSelectArticle('廚房')">廚房</button>
-        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1" :class="{ active : selectItem === '飯廳' }" @click="getSelectArticle('飯廳')">飯廳</button>
-        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1" :class="{ active : selectItem === '工作室' }" @click="getSelectArticle('工作室')">工作室</button>
-        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1" :class="{ active : selectItem === '陽台' }" @click="getSelectArticle('陽台')">陽台</button>
-        <button type="button" class="btn btn-outline-dark rounded-pill" :class="{ active : selectItem === '浴室' }" @click="getSelectArticle('浴室')">浴室</button>
+        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1"
+        :class="{ active : selectItem === '全部' }" @click="getSelectArticle('全部')">全部
+        </button>
+        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1"
+        :class="{ active : selectItem === '客廳' }" @click="getSelectArticle('客廳')">客廳
+        </button>
+        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1"
+        :class="{ active : selectItem === '臥房' }" @click="getSelectArticle('臥房')">臥房
+        </button>
+        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1"
+        :class="{ active : selectItem === '廚房' }" @click="getSelectArticle('廚房')">廚房
+        </button>
+        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1"
+        :class="{ active : selectItem === '飯廳' }" @click="getSelectArticle('飯廳')">飯廳
+        </button>
+        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1"
+        :class="{ active : selectItem === '工作室' }" @click="getSelectArticle('工作室')">工作室
+        </button>
+        <button type="button" class="btn btn-outline-dark rounded-pill me-2 mb-1"
+        :class="{ active : selectItem === '陽台' }" @click="getSelectArticle('陽台')">陽台
+        </button>
+        <button type="button" class="btn btn-outline-dark rounded-pill"
+        :class="{ active : selectItem === '浴室' }" @click="getSelectArticle('浴室')">浴室
+        </button>
       </div>
     </div>
     <div class="mh-wrapper">
       <div class="row py-4" v-masonry transition-duration="0.3s" item-selector=".grid-item">
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4 grid-item" v-masonry-tile v-for="item in articlefilter" :key="item.id">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4 grid-item" v-masonry-tile
+        v-for="item in articlefilter" :key="item.id">
           <router-link :to="`/article/content/${item.id}`">
             <div class="card shadow">
               <div class="card-img-wrapper">
@@ -32,7 +49,13 @@
           </router-link>
         </div>
       </div>
-      <div class="py-1 text-end"><router-link to="/"><p class="h3"><i class="bi bi-arrow-left me-3"></i>回首頁</p></router-link></div>
+      <div class="py-1 text-end">
+        <router-link to="/">
+          <p class="h3">
+            <i class="bi bi-arrow-left me-3"></i>回首頁
+          </p>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +68,6 @@ export default {
   components: {
     PageTitle
   },
-  inject: ['emitter'],
   data () {
     return {
       articleAll: [],
@@ -54,14 +76,14 @@ export default {
     }
   },
   methods: {
-    getArticleAll (page = 1) {
+    getArticleAll () {
       const vm = this
       const api1 = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_APIPATH}/articles?page=1`
       const api2 = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_APIPATH}/articles?page=2`
       const request1 = vm.$http.get(api1)
       const request2 = vm.$http.get(api2)
       vm.emitter.emit('loading', true)
-      vm.$http.all([request1, request2]).then(this.$http.spread((...res) => {
+      vm.$http.all([request1, request2]).then(vm.$http.spread((...res) => {
         if (res[0].data.success && res[1].data.success) {
           vm.articleAll = [...res[0].data.articles, ...res[1].data.articles]
           vm.getSelectArticle('全部')

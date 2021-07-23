@@ -1,45 +1,63 @@
 <template>
   <div class="container">
-    <PageTitle :path="require('@/assets/images/page-title11.png')" >結帳-填寫資料</PageTitle>
+    <PageTitle :path="require('@/assets/images/page-title11.png')">結帳-填寫資料</PageTitle>
     <div class="row mh-wrapper">
-     <div class="col-12 py-3">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <CheckoutProgress :step = "2"></CheckoutProgress>
+      <div class="col-12 py-3">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <CheckoutProgress :step = "2"></CheckoutProgress>
+          </div>
+        </div>
+        <div class="bg-light p-5">
+          <Form @submit="ConfirmSend" v-slot="{ errors }" class="row g-4">
+            <div class="col-md-6 mb-3">
+              <label for="userName" class="form-label">
+                <span class="text-danger">*</span>姓名:
+              </label>
+              <Field type="text" name="姓名" id="userName" class="form-control"
+              v-model="user.name" :class="{ 'is-invalid': errors['姓名'] }" rules="required"
+              placeholder="請輸入姓名"></Field>
+              <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="email" class="form-label">
+                <span class="text-danger">*</span>email:
+              </label>
+              <Field type="email" name="email" id="email" class="form-control"
+              v-model="user.email" :class="{ 'is-invalid': errors['email'] }"
+              rules="email|required" placeholder="example@gmail.com"></Field>
+              <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="tel" class="form-label">
+                <span class="text-danger">*</span>電話:
+              </label>
+              <Field type="text" name="電話" id="tel" class="form-control" v-model="user.tel"
+              :class="{ 'is-invalid': errors['電話'] }" rules="digits:10|required"
+              placeholder="0920123456"></Field>
+              <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="addr" class="form-label">
+                <span class="text-danger">*</span>地址:
+              </label>
+              <Field type="text" name="地址" id="addr" class="form-control" v-model="user.address"
+              :class="{ 'is-invalid': errors['地址'] }" rules="required"
+              placeholder="新北市新店區安康路二段100號3樓"></Field>
+              <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+            </div>
+            <div class="col-12 mb-3">
+              <label for="msg" class="form-label">留言/備註:</label>
+              <textarea name="msg" id="msg" class="form-control" v-model="message"></textarea>
+            </div>
+            <div class="col-12 text-end">
+              <button type="submit" class="btn btn-lg btn-major">
+                下一步，結帳付款<i class="fas fa-shipping-fast ms-2"></i>
+              </button>
+            </div>
+          </Form>
         </div>
       </div>
-      <div class="bg-light p-5">
-        <Form @submit="ConfirmSend" v-slot="{ errors }" class="row g-4">
-          <div class="col-md-6 mb-3">
-            <label for="userName" class="form-label">姓名:</label>
-            <Field type="text" name="姓名" id="userName" class="form-control" v-model="user.name" :class="{ 'is-invalid': errors['姓名'] }" rules="required" placeholder="請輸入姓名"></Field>
-            <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="email" class="form-label">email:</label>
-            <Field type="email" name="email" id="email" class="form-control" v-model="user.email" :class="{ 'is-invalid': errors['email'] }" rules="email|required" placeholder="example@gmail.com"></Field>
-            <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="tel" class="form-label">電話:</label>
-            <Field type="text" name="電話" id="tel" class="form-control" v-model="user.tel" :class="{ 'is-invalid': errors['電話'] }" rules="digits:10|required" placeholder="0920123456"></Field>
-            <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="addr" class="form-label">地址:</label>
-            <Field type="text" name="地址" id="addr" class="form-control" v-model="user.address" :class="{ 'is-invalid': errors['地址'] }" rules="required" placeholder="新北市新店區安康路二段100號3樓"></Field>
-            <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
-          </div>
-          <div class="col-12 mb-3">
-            <label for="msg" class="form-label">留言/備註:</label>
-            <textarea name="msg" id="msg" class="form-control" v-model="message"></textarea>
-          </div>
-          <div class="col-12 text-end">
-            <button type="submit" class="btn btn-lg btn-major">下一步，結帳付款<i class="fas fa-shipping-fast ms-2"></i></button>
-          </div>
-        </Form>
-      </div>
-     </div>
     </div>
   </div>
 </template>
@@ -54,7 +72,7 @@ export default {
     PageTitle,
     CheckoutProgress
   },
-  inject: ['emitter', 'Loading'],
+  inject: ['Loading'],
   data () {
     return {
       user: {
@@ -104,7 +122,7 @@ export default {
         confirmButtonText: '確認送出！',
         cancelButtonText: '取消',
         icon: 'info'
-      }).then(function (result) {
+      }).then((result) => {
         if (result.isConfirmed) {
           vm.createOrder()
         }

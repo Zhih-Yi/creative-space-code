@@ -9,7 +9,6 @@
 
 <script>
 import ProductManage from '@/components/Back/NavbarManage.vue'
-import emitter from '@/methods/emitter.js'
 import MessageList from '@/components/Share/MessageList.vue'
 import LoadingItem from '@/components/Share/LoadingItem.vue'
 
@@ -22,7 +21,6 @@ export default {
   },
   provide () {
     return {
-      emitter,
       Loading: false
     }
   },

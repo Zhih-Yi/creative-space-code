@@ -1,6 +1,8 @@
 <template>
   <div class="scroll-top" v-if="showScroll">
-    <a href="#" @click.prevent="toTop"><img :src="require('@/assets/images/top.png')" alt="向上捲動"></a>
+    <a href="#" @click.prevent="toTop">
+      <img :src="require('@/assets/images/top.png')" alt="向上捲動">
+    </a>
   </div>
 </template>
 
