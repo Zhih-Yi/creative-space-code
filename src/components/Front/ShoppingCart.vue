@@ -51,7 +51,7 @@
                 </div>
               </div>
               <div class="col-3 d-flex align-items-center">
-                <a href="#" @click.prevent="deleteProduct(item)" :disabled="loadingItem === item.id">
+                <a href="#" @click.prevent="deleteProduct(item)" :class="{'disabled-link':loadingItem === item.id}">
                   <i class="bi bi-x-square h4"></i>
                 </a>
               </div>

@@ -237,6 +237,9 @@ $white-text-shadow: 1px 1px 3px #000000;
     } 
   }
 }
+.disabled-link{
+  cursor: not-allowed;
+}
 .slide-leave-active, .slide-enter-active{
   transition: all 0.8s;
 }
