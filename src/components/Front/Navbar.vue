@@ -109,6 +109,7 @@
     </div>
   </nav>
 </template>
+
 <script>
 import $ from 'jquery'
 

@@ -22,7 +22,7 @@ import { pagination } from './methods/pagination.js'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 // vue masonry
-const emitter = mitt()
+const emitterInit = mitt()
 
 // lazyload
 const lazyPluginSetting = {
@@ -41,7 +41,7 @@ configure({
 setLocale('zh_TW')
 
 const app = createApp(App)
-app.config.globalProperties.emitter = emitter
+app.config.globalProperties.emitter = emitterInit
 app.config.globalProperties.$filters = { currency, date }
 app.config.globalProperties.$pagination = pagination
 app.use(store)

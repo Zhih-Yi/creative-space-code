@@ -5,6 +5,7 @@
     <li class="progress-item" :class="{'active':step === 3}">結帳付款</li>
   </ul>
 </template>
+
 <script>
 export default {
   name: 'CheckoutProgress',

@@ -146,6 +146,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import modalMixin from '@/mixin/ModalMixin.js'
 import firebase from 'firebase/app'

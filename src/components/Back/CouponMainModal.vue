@@ -49,6 +49,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import modalMixin from '@/mixin/ModalMixin.js'
 

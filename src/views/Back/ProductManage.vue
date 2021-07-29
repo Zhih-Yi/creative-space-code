@@ -42,7 +42,8 @@
                       <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('表面材')">表面材</a>
                     </li>
                     <li class="mx-3 my-2">
-                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('磁磚')">磁磚</a></li>
+                      <a class="dropdown-item mb-0" href="#" @click.prevent="getSelectKind('磁磚')">磁磚</a>
+                    </li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown position-static">

@@ -25,7 +25,7 @@
           <div class="col-md-12 p-3">
           <h3 class="py-1">購物清單</h3>
           <div class="line-info mb-3"></div>
-            <div v-if="cart.length === 0 && !Loading">
+            <div v-if="cart.length === 0 && !$root.LoadingStatus">
               <p class="h4 mb-0">購物車沒有商品了，趕快去逛逛!
                 <router-link to="/" class="btn btn-outline-dark ms-3">回首頁</router-link>
               </p>
@@ -62,8 +62,8 @@
                 </a>
               </div>
             </div>
-            <hr>
-            <div class="row">
+            <hr v-if="cart.length > 0">
+            <div class="row" v-if="cart.length > 0">
               <div class="col-12 text-end">
                 <p class="h4 py-2">
                   <span class="me-3">總計:</span>{{ $filters.currency(total) }}
@@ -108,7 +108,6 @@ export default {
     PageTitle,
     CheckoutProgress
   },
-  inject: ['Loading'],
   data () {
     return {
       cart: [],
@@ -178,6 +177,9 @@ export default {
   },
   created () {
     this.emitter.emit('cartVisible', false)
+    this.emitter.on('RefreshCart', () => {
+      this.getCart()
+    })
     this.getCart()
   }
 }

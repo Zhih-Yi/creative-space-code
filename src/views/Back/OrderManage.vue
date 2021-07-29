@@ -52,6 +52,7 @@
     </DeleteModal>
   </div>
 </template>
+
 <script>
 import DeleteModal from '@/components/Back/DeleteModal.vue'
 import MainModal from '@/components/Back/OrderMainModal.vue'

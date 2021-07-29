@@ -72,7 +72,6 @@ export default {
     PageTitle,
     CheckoutProgress
   },
-  inject: ['Loading'],
   data () {
     return {
       user: {
@@ -92,6 +91,8 @@ export default {
       vm.emitter.emit('loading', true)
       vm.$http.post(api, { data: info }).then((res) => {
         if (res.data.success) {
+          vm.emitter.emit('getCart')
+          vm.emitter.emit('RefreshCart')
           const orderId = res.data.orderId
           vm.$router.push(`/checkoutPay/${orderId}`)
         } else {

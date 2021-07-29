@@ -33,7 +33,7 @@
       <div class="row py-4" v-masonry transition-duration="0.3s" item-selector=".grid-item">
         <div class="col-sm-6 col-md-6 col-lg-4 col-xxl-3 mb-4 grid-item" v-masonry-tile
         v-for="item in articlefilter" :key="item.id">
-          <router-link :to="`/article/content/${item.id}`">
+          <router-link :to="`/article/content/${item.id}?tag=${selectItem}`">
             <div class="card shadow">
               <div class="card-img-wrapper">
                 <img :src="item.image" class="card-img-top img-fluid" :alt="item.title">
@@ -86,7 +86,11 @@ export default {
       vm.$http.all([request1, request2]).then(vm.$http.spread((...res) => {
         if (res[0].data.success && res[1].data.success) {
           vm.articleAll = [...res[0].data.articles, ...res[1].data.articles]
-          vm.getSelectArticle('全部')
+          const { tag } = this.$route.query
+          if (tag) {
+            vm.selectItem = tag
+          }
+          vm.getSelectArticle(vm.selectItem)
         } else {
           vm.emitter.emit('push-message', {
             style: 'danger',
@@ -113,25 +117,25 @@ export default {
           this.articlefilter = [...this.articleAll]
           break
         case '客廳':
-          this.articlefilter = this.articleAll.filter((item) => item.tag.includes('客廳'))
+          this.articlefilter = this.articleAll.filter((item) => item.tag.includes(this.selectItem))
           break
         case '飯廳':
-          this.articlefilter = this.articleAll.filter((item) => item.tag.includes('飯廳'))
+          this.articlefilter = this.articleAll.filter((item) => item.tag.includes(this.selectItem))
           break
         case '廚房':
-          this.articlefilter = this.articleAll.filter((item) => item.tag.includes('廚房'))
+          this.articlefilter = this.articleAll.filter((item) => item.tag.includes(this.selectItem))
           break
         case '臥房':
-          this.articlefilter = this.articleAll.filter((item) => item.tag.includes('臥房'))
+          this.articlefilter = this.articleAll.filter((item) => item.tag.includes(this.selectItem))
           break
         case '浴室':
-          this.articlefilter = this.articleAll.filter((item) => item.tag.includes('浴室'))
+          this.articlefilter = this.articleAll.filter((item) => item.tag.includes(this.selectItem))
           break
         case '陽台':
-          this.articlefilter = this.articleAll.filter((item) => item.tag.includes('陽台'))
+          this.articlefilter = this.articleAll.filter((item) => item.tag.includes(this.selectItem))
           break
         case '工作室':
-          this.articlefilter = this.articleAll.filter((item) => item.tag.includes('工作室'))
+          this.articlefilter = this.articleAll.filter((item) => item.tag.includes(this.selectItem))
           break
       }
     }

@@ -10,7 +10,7 @@
       </template>
     </HeaderMain>
     <div class="py-5 row g-0">
-      <div class="col-md-4 my-3">
+      <div class="col-md-4 mt-3 mb-0 my-md-3">
         <router-link to="/new" class="text-decoration-none">
           <div class="img-link animated">
             <img v-lazy="require('@/assets/images/menu-img-v.jpg')" alt="新品到貨" class="img-menu-v">
@@ -20,7 +20,7 @@
           </div>
         </router-link>
       </div>
-      <div class="col-md-8 my-3">
+      <div class="col-md-8 mt-0 mb-3 my-md-3">
         <div class="row">
           <div class="col-12">
             <router-link to="/discount" class="text-decoration-none">
@@ -68,28 +68,7 @@
         <swiper :slidesPerView="4" :spaceBetween="20" class="swiper-container-index animated"
         :slidesPerGroup="4" :loop="true" :autoHeight="true"
         :navigation="true" :lazy="true"
-        :breakpoints=" {
-          0:{
-            slidesPerView: 1,
-            spaceBetween: 10,
-            slidesPerGroup: 1
-          },
-          567: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            slidesPerGroup: 1
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-            slidesPerGroup: 3
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-            slidesPerGroup: 4
-          }
-        }">
+        :breakpoints="swiper.breakpoints">
         <swiper-slide v-for="item in ItemJson" :key="item.id">
           <router-link :to="`/product/${item.id}`">
             <img :src="item.imageUrl" class="swiper-lazy swiper-main-img"/>
@@ -197,6 +176,30 @@ export default {
         name: '',
         email: '',
         msg: ''
+      },
+      swiper: {
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            slidesPerGroup: 1
+          },
+          567: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            slidesPerGroup: 1
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            slidesPerGroup: 3
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            slidesPerGroup: 4
+          }
+        }
       }
     }
   },

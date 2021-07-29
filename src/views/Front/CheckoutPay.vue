@@ -8,15 +8,15 @@
             <CheckoutProgress :step = "3"></CheckoutProgress>
           </div>
         </div>
-        <div class="bg-light row justify-content-center p-4 my-4" v-if="order.is_paid">
-          <div class="col-md-8 d-flex justify-content-center align-items-center">
-            <div class="me-5">
+        <div class="bg-light row justify-content-center p-4 my-4" v-if="order.is_paid" ref="orderSearch">
+          <div class="col-md-8 d-flex flex-column flex-md-row justify-content-center align-items-center">
+            <div class="me-0 me-md-5 mb-4 mb-md-0">
               <img :src="require('@/assets/images/packing-list.png')" alt="訂單查詢" height="128">
             </div>
             <div>
               <p>訂單查詢號碼，可至<router-link to="/orderSearch" class="text-primary mx-2 fw-bold">訂單查詢</router-link>查詢訂單紀錄</p>
               <div class="input-group">
-                <input id="copy" :value="orderId" class="form-control" />
+                <input id="copy" :value="orderId" class="form-control input-copy" />
                 <button type="button" class="btn btn-major btn-copy" data-clipboard-target="#copy">複製訂單編號</button>
               </div>
             </div>
@@ -169,7 +169,8 @@ export default {
             confirmButtonText: '關閉',
             icon: 'success'
           }).then(() => {
-            window.scrollTo(0, 0)
+            const searchPos = this.$refs.orderSearch.offsetTop
+            window.scroll(0, searchPos - 200)
           })
         } else {
           vm.emitter.emit('push-message', {

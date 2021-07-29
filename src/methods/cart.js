@@ -30,7 +30,8 @@ export function changeProductQty (item) {
   vm.loadingItem = item.id
   vm.$http.put(api, { data: cart }).then((res) => {
     if (res.data.success) {
-      vm.getCart()
+      vm.emitter.emit('getCart')
+      vm.emitter.emit('RefreshCart')
     } else {
       vm.emitter.emit('push-message', {
         style: 'danger',
@@ -63,7 +64,8 @@ export function deleteProduct (item) {
         content: '商品已從購物車移除',
         icon: 'fas fa-check-circle'
       })
-      vm.getCart()
+      vm.emitter.emit('getCart')
+      vm.emitter.emit('RefreshCart')
     } else {
       vm.emitter.emit('push-message', {
         style: 'danger',
@@ -87,7 +89,6 @@ export function getCart () {
   const vm = this
   const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_APIPATH}/cart`
   vm.emitter.emit('loading', true)
-  vm.Loading = true
   vm.$http.get(api).then((res) => {
     if (res.data.success) {
       vm.cart = JSON.parse(JSON.stringify(res.data.data.carts))
@@ -102,7 +103,6 @@ export function getCart () {
       })
     }
     vm.emitter.emit('loading', false)
-    vm.Loading = false
   }).catch((err) => {
     vm.emitter.emit('push-message', {
       style: 'danger',

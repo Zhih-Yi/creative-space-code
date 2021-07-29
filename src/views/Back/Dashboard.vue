@@ -19,11 +19,6 @@ export default {
     MessageList,
     LoadingItem
   },
-  provide () {
-    return {
-      Loading: false
-    }
-  },
   created () {
     const vm = this
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')

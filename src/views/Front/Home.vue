@@ -48,6 +48,7 @@
     <div id="fb-root"></div>
   </div>
 </template>
+
 <script>
 import Navbar from '@/components/Front/Navbar.vue'
 import MessageList from '@/components/Share/MessageList.vue'
@@ -64,9 +65,9 @@ export default {
     ShoppingCart,
     ScrollTop
   },
-  provide () {
+  data () {
     return {
-      Loading: false
+      LoadingStatus: false
     }
   }
 }

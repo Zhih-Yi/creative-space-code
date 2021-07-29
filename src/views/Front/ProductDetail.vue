@@ -12,7 +12,7 @@
       <div class="col-md-5 py-3">
         <img :src="currentProduct.imageUrl" :alt="currentProduct.title" class="detail-img">
       </div>
-      <div class="col-md-7 py-3 d-flex flex-column justify-content-between" v-cloak>
+      <div class="col-md-7 py-3 ps-md-3 d-flex flex-column justify-content-between" v-cloak>
         <p class="h5 py-1">
           <span class="badge bg-dark rounded-pill">{{ currentProduct.category }}</span>
         </p>
@@ -35,53 +35,68 @@
           <button type="button" @click="currentProduct.num = minusQuantity(currentProduct.num)"
           class="btn minus border border-2 border-dark btn-outline-dark"><i class="bi bi-dash-lg"></i>
           </button>
-          <input type="number" v-model.number="currentProduct.num" class="text-center input-number h-100 rounded-0"
+          <input type="number" v-model.number="currentProduct.num" class="text-center input-number h-100 rounded-0 detail-input-number"
           @change="currentProduct.num = verifyNumber(currentProduct.num)">
           <button type="button" @click="currentProduct.num = addQuantity(currentProduct.num)"
           class="btn add border border-2 border-dark btn-outline-dark"><i class="bi bi-plus-lg"></i>
           </button>
         </div>
-        <div class="pt-3">
-          <button type="button" v-if="isFavorite" @click="cancelFavorite" class="btn btn-outline-dark me-3">
+        <div class="pt-3 detail-btn-group">
+          <button type="button" v-if="isFavorite" @click="cancelFavorite" class="btn btn-outline-dark detail-btn">
             <i class="fas fa-heart fa-lg me-2"></i>取消收藏
           </button>
-          <button type="button" v-else @click="saveFavorite" class="btn btn-outline-dark me-3">
+          <button type="button" v-else @click="saveFavorite" class="btn btn-outline-dark detail-btn">
             <i class="fas fa-heart fa-lg me-2"></i>加入收藏
           </button>
-          <button type="button" @click="addToCart(currentProduct)" class="btn btn-major">
+          <button type="button" @click="addToCart(currentProduct)" class="btn btn-major detail-btn">
             <i class="fas fa-shopping-cart fa-lg me-2"></i>加入購物車
           </button>
         </div>
       </div>
       <div class="col-12 py-4">
-        <h3>
-          <i class="fas fa-info-circle me-2"></i>產品資訊
-        </h3>
-        <div class="line-info mb-3"></div>
-        <p>
-          <pre class="fs-6">{{ currentProduct.content }}</pre>
-        </p>
+        <div class="row">
+          <div class="col-md-7 col-lg-9">
+            <h3>
+              <i class="fas fa-info-circle me-2"></i>產品資訊
+            </h3>
+            <div class="line-info mb-3"></div>
+            <p>
+              <pre class="fs-6">{{ currentProduct.content }}</pre>
+            </p>
+          </div>
+          <div class="col-md-5 col-lg-3 py-3 d-flex align-items-center">
+            <div class="detail-info-box px-3 py-3 w-100 d-flex align-items-center fw-bold">
+              <div class="pe-3">
+                <i class="bi bi-telephone-fill h1"></i>
+              </div>
+              <div>
+                <p class="mb-1">更多詳細資訊</p>
+                <p class="mb-1">請電聯客服專員</p>
+                <p class="mb-0 fs-4"><a href="tel:+0223456789">02-2345-6789</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-12 py-4">
        <div class="row justify-content-center">
-          <div class="col-md-8 col-lg-6">
-            <swiper :style="{'--swiper-navigation-color': 'rgba(255,255,255,0.6)'}"
-            :loop="true" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }" class="swiper-product">
-              <template v-for="item in currentProduct.imagesUrl" :key="item">
-                <swiper-slide v-if="item">
-                  <img :src="item" class="detail-display-img"/>
-                </swiper-slide>
-              </template>
-            </swiper>
-            <swiper @swiper="setThumbsSwiper" :spaceBetween="10" :slidesPerView="5"
-            :freeMode="true" :watchSlidesVisibility="true" :watchSlidesProgress="true" class="swiper-item py-2">
-              <template v-for="item in currentProduct.imagesUrl" :key="item">
-                <swiper-slide v-if="item">
-                  <img :src="item" class="detail-display-imgitem" />
-                </swiper-slide>
-              </template>
-            </swiper>
-          </div>
+          <swiper @swiper="setThumbsSwiper" :slidesPerView="5" :direction="'vertical'"
+          :freeMode="true" :watchSlidesVisibility="true" :watchSlidesProgress="true"
+          :allowTouchMove="false" class="swiper-item py-2 col-md-2 col-lg-1 d-none d-md-flex">
+            <template v-for="item in currentProduct.imagesUrl" :key="item">
+              <swiper-slide v-if="item">
+                <img :src="item" class="detail-display-imgitem" />
+              </swiper-slide>
+            </template>
+          </swiper>
+          <swiper :style="{'--swiper-navigation-color': 'rgba(255,255,255,0.6)'}" class="swiper-detail col-md-8 col-lg-6"
+          :loop="true" :spaceBetween="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }">
+            <template v-for="item in currentProduct.imagesUrl" :key="item">
+              <swiper-slide v-if="item">
+                <img :src="item" class="detail-display-img"/>
+              </swiper-slide>
+            </template>
+          </swiper>
         </div>
       </div>
       <div class="col-12 py-4">
@@ -100,28 +115,7 @@
         <div class="line-info mb-3"></div>
           <swiper :slidesPerView="4" :spaceBetween="20" class="swiper-container-index"
           :slidesPerGroup="4" :navigation="true" :lazy="true" :loop="true"
-          :breakpoints=" {
-            0:{
-              slidesPerView: 1,
-              spaceBetween: 10,
-              slidesPerGroup: 1
-            },
-            567: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-              slidesPerGroup: 1
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-              slidesPerGroup: 3
-            },
-            1024: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-              slidesPerGroup: 4
-            }
-        }">
+          :breakpoints="swiper.breakpoints">
             <swiper-slide v-for="item in productFilter" :key="item.id">
               <router-link :to="`/product/${item.id}`">
                 <img :src="item.imageUrl" class="swiper-lazy swiper-main-img"/>
@@ -141,6 +135,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import Menu from '@/components/Front/Menu.vue'
 import { addQuantity, minusQuantity, verifyNumber } from '@/methods/cart.js'
@@ -165,7 +160,31 @@ export default {
       productAll: [],
       productFilter: [],
       thumbsSwiper: null,
-      isFavorite: false
+      isFavorite: false,
+      swiper: {
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            slidesPerGroup: 1
+          },
+          567: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            slidesPerGroup: 1
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            slidesPerGroup: 3
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            slidesPerGroup: 4
+          }
+        }
+      }
     }
   },
   watch: {

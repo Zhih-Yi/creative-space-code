@@ -4,8 +4,17 @@
     <div class="row mh-wrapper">
       <div class="col-12">
         <div class="container bg-light" :class="{'h-100': !isSearch}">
-          <div class="row justify-content-center p-4">
-            <div class="col-md-8 d-flex align-items-center py-4 justify-content-center">
+          <div class="row">
+            <div class="col-12 pt-4">
+              <router-link to="/">
+                <p class="h1">
+                  <i class="bi bi-arrow-left me-3"></i>
+                </p>
+              </router-link>
+            </div>
+          </div>
+          <div class="row justify-content-center p-2 p-md-4">
+            <div class="col-md-9 col-lg-8 d-flex align-items-center py-4 justify-content-center">
               <div class="me-5 d-none d-sm-block">
                 <img :src="require('@/assets/images/packing-list.png')" width="128" alt="訂單查詢">
               </div>

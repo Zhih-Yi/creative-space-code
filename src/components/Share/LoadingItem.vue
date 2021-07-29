@@ -17,18 +17,20 @@
     </div>
   </loading>
 </template>
+
 <script>
 export default {
   name: 'LoadingItem',
   data () {
     return {
-      isLoading: false,
-      fullPage: true
+      fullPage: true,
+      isLoading: this.$root.LoadingStatus
     }
   },
   created () {
     this.emitter.on('loading', (status) => {
-      this.isLoading = status
+      this.$root.LoadingStatus = status
+      this.isLoading = this.$root.LoadingStatus
     })
   }
 }

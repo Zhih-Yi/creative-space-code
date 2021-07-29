@@ -3,6 +3,7 @@
     <Toast v-for="(msg, key) in messages" :key="key" :msg="msg"/>
   </div>
 </template>
+
 <script>
 import Toast from '@/components/Share/Message.vue'
 
@@ -22,6 +23,7 @@ export default {
   }
 }
 </script>
+
 <style scope>
 .toast-container{
   z-index: 999

@@ -8,7 +8,7 @@
         <p class="text-center cart-title py-2 h5 fw-bold">
           購物車<i class="fas fa-shopping-cart ms-2"></i>
         </p>
-        <div v-if="!Loading && cart.length === 0 && cartVisible" class="text-center">
+        <div v-if="!$root.LoadingStatus && cart.length === 0 && cartVisible" class="text-center">
           購物車還沒有商品喔，<br>趕快新增一些吧!
         </div>
         <div v-if="!cartVisible" class="d-flex py-3 flex-column justify-content-center align-items-center">
@@ -51,7 +51,7 @@
                 </div>
               </div>
               <div class="col-3 d-flex align-items-center">
-                <a href="#" @click.prevent="deleteProduct(item)">
+                <a href="#" @click.prevent="deleteProduct(item)" :disabled="loadingItem === item.id">
                   <i class="bi bi-x-square h4"></i>
                 </a>
               </div>
@@ -68,7 +68,6 @@ import { addQuantity, verifyNumber, minusQuantity, changeProductQty, deleteProdu
 
 export default {
   name: 'ShoppingCart',
-  inject: ['Loading'],
   data () {
     return {
       openSidebar: false,

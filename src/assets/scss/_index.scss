@@ -5,9 +5,9 @@
     background-color: rgba(0,0,0,0.2);
     top: 0;
     bottom: 0;
-    left:0;
-    right:0;
-    text-shadow:$white-text-shadow;
+    left: 0;
+    right: 0;
+    text-shadow: $white-text-shadow;
     .carousel-caption-content{
       padding: 30px 100px;
     }
@@ -34,24 +34,24 @@
   &::after{
     content: '';
     position: absolute;
-    bottom:-3%;
-    width:100%;
+    bottom: -3%;
+    width: 100%;
     height: 3px;
     background-color: $primary;
-    left:0;
+    left: 0;
     }
   &::before{
     font-family: "Font Awesome 5 Free"; 
     font-weight: 900;
-    content:'\f015';
+    content: '\f015';
     position: absolute;
-    bottom:-10%;
+    bottom: -10%;
     color: $primary;
-    left:96%;
+    left: 96%;
   }
 }
 .img-link{
-  position:relative;
+  position: relative;
   overflow: hidden;
   &:hover, :focus, :active{
     .img-menu-v{
@@ -70,13 +70,13 @@
   }
   .img-menu-v{
     object-fit: cover;
-    height:450px;
-    width:100%;
+    height: 450px;
+    width: 100%;
   }
   .img-menu{
     object-fit: cover;
-    height:225px;
-    width:100%;
+    height: 225px;
+    width: 100%;
   }
   .menu-item-title{
     background-color: $warning-transparent1;

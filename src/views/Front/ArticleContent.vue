@@ -20,6 +20,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'ArticleContent',
@@ -31,7 +32,12 @@ export default {
   },
   methods: {
     historyBack () {
-      this.$router.go(-1)
+      const { tag } = this.$route.query
+      if (tag) {
+        this.$router.push(`/article?tag=${tag}`)
+      } else {
+        this.$router.go(-1)
+      }
     },
     getArticleContent () {
       const vm = this
