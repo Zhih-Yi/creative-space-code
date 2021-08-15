@@ -7,7 +7,7 @@ export default {
       vm.$http.get(api).then((res) => {
         if (res.data.success) {
           vm.productAll = [...res.data.products]
-          vm.getProductByCategory()
+          vm.getProductByCategory(vm.page)
         } else {
           vm.emitter.emit('push-message', {
             style: 'danger',

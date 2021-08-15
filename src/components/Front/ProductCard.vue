@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/product/${data.id}?categoryMain=${categoryMain}&category=${category}`">
+  <router-link :to="`/product/${data.id}?categoryMain=${categoryMain}&category=${category}&page=${page}`">
     <div class="card h-100 shadow">
       <div class="card-img-wrapper">
         <img v-lazy="data.imageUrl" class="card-img-top img-card" :alt="data.title">
@@ -36,6 +36,10 @@ export default {
     categoryMain: {
       type: String,
       default: ''
+    },
+    page: {
+      type: [Number, String],
+      default: 1
     }
   }
 }

@@ -199,11 +199,11 @@ export default {
     minusQuantity,
     verifyNumber,
     historyBack () {
-      const { category, categoryMain } = this.$route.query
+      const { category, categoryMain, page } = this.$route.query
       if (!category || !categoryMain) {
         this.$router.go(-1)
       } else {
-        this.$router.push(`/product/${categoryMain}/${category}`)
+        this.$router.push({ path: `/product/${categoryMain}/${category}`, query: { page: page } })
       }
     },
     getProductDetail () {
